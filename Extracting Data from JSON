@@ -1,0 +1,20 @@
+import urllib.request                                        # importing required modules
+import urllib.parse
+import urllib.error
+import json
+url = input('Enter location: ')                             # Asking input from user
+print('Retrieving', url)
+
+read = urllib.request.urlopen(url).read()                  # using urllib opening the document and reading it
+print('Retrieved', len(read), 'characters')                # checking the length
+
+info = json.loads(read)                                    #using json load from string
+
+ssum = 0                                                   # initializing sum to 0
+count = 0                                                  # initializing count to 0
+
+for item in info['comments']:                              # looping through the info['comments'] since it is dictonary
+    ssum += item['count']                                  # adding the count value and repeating the loop
+    count += 1                                             # counting +1 for every time and repeating the loop
+print('count:', count)
+print('Sum:', ssum)
